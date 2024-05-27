@@ -1,0 +1,47 @@
+{% extends 'app_main/layout.html' %}
+
+
+{% block main-nav %}
+    {% include 'app_main/main_nav.html' with active_tab='persona' %}
+{% endblock %}
+
+{% block main-title %}Ejercicio 6: Persona{% endblock %}
+
+{% block content %}
+    {% if persona is not None %}
+        <div class="my-4">
+            PERSONA
+            <br>
+            {{ persona.mostrar }}
+        </div>
+        <div>
+            <a href="{% url 'persona' %}">Ingresar Persona Nueva</a>
+        </div>
+    {% else %}
+        <h5>Introduce los datos de una Persona</h5>
+
+        <form action="{% url 'persona'%}" method="post">
+            {% csrf_token %}
+
+            <div class="row py-2">
+                <div class="col-auto">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" name="nombre" class="form-control">
+                </div>
+                <div class="col-auto">
+                    <label for="edad">edad</label>
+                    <input type="number" name="edad" class="form-control">
+                </div>
+                <div class="col-auto">
+                    <label for="dni">DNI</label>
+                    <input type="number" name="dni" class="form-control">
+                </div>
+            </div>
+            <div class="row py-2">
+                <div class="col-auto">
+                    <input type="submit" class="form-control btn btn-sm btn-success" value="Cargar">
+                </div>
+            </div>
+        </form>
+    {% endif %}
+{% endblock %}

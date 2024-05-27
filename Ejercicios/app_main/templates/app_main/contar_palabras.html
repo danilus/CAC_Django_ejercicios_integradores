@@ -1,0 +1,42 @@
+{% extends 'app_main/layout.html' %}
+
+
+{% block main-nav %}
+    {% include 'app_main/main_nav.html' with active_tab='contar_palabras' %}
+{% endblock %}
+
+{% block main-title %}Ejercicio 3: Contar Palabras{% endblock %}
+
+{% block content %}
+    {% if words|length != 0 %}
+        <div class="my-4">
+            OCURRENCIAS DE CADA PALABRA EN EL TEXTO INGRESADO
+            <ul>
+                {% for word, quant in words.items %}
+                    <li>{{ word }}: <span class="fw-bold border px-1 rounded border-1 bg-warning-subtle border-black">{{ quant }}</span></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div>
+            <a href="{% url 'contar_palabras' %}">Ingresar Texto Nuevo</a>
+        </div>
+    {% else %}
+        <h5>Introduce un texto para contar la cantidad de ocurrencias de cada palabra</h5>
+
+        <form action="{% url 'contar_palabras'%}" method="post">
+            {% csrf_token %}
+            
+            <div class="row py-2">
+                <div class="col">
+                    <label for="texto">Texto</label>
+                    <textarea name="texto" class="form-control" rows="5"></textarea>
+                </div>
+            </div>
+            <div class="row py-2">
+                <div class="col-auto">
+                    <input type="submit" class="form-control btn btn-sm btn-success" value="Procesar">
+                </div>
+            </div>
+        </form>
+    {% endif %}
+{% endblock %}

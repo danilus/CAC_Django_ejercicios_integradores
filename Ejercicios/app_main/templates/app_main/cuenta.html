@@ -1,0 +1,60 @@
+{% extends 'app_main/layout.html' %}
+
+
+{% block main-nav %}
+    {% include 'app_main/main_nav.html' with active_tab='cuenta' %}
+{% endblock %}
+
+{% block main-title %}Ejercicio 7: Cuenta{% endblock %}
+
+{% block content %}
+    {% if not initial %}
+        <div class="my-4">
+            CUENTA
+            <br>
+            {{ cuenta.mostrar }}
+        </div>
+        <div>
+            <a href="{% url 'cuenta' %}">Volver al operaciones</a>
+        </div>
+    {% else %}
+        <h5>Ingresa / retira cantidades de la siguiente Cuenta</h5>
+        <div>{{ cuenta.mostrar }}</div>
+
+        <form action="{% url 'cuenta'%}" method="post">
+            {% csrf_token %}
+
+            <input type="hidden" name="operation" value="ingresar">
+
+            <div class="row py-2">
+                <div class="col-auto">
+                    <label for="cantidad">cantidad</label>
+                    <input type="text" name="cantidad" class="form-control">
+                </div>
+            </div>
+            <div class="row py-2">
+                <div class="col-auto">
+                    <input type="submit" class="form-control btn btn-sm btn-success" value="Ingresar">
+                </div>
+            </div>
+        </form>
+
+        <form action="{% url 'cuenta'%}" method="post">
+            {% csrf_token %}
+            
+            <input type="hidden" name="operation" value="retirar">
+
+            <div class="row py-2">
+                <div class="col-auto">
+                    <label for="cantidad">cantidad</label>
+                    <input type="text" name="cantidad" class="form-control">
+                </div>
+            </div>
+            <div class="row py-2">
+                <div class="col-auto">
+                    <input type="submit" class="form-control btn btn-sm btn-success" value="Retirar">
+                </div>
+            </div>
+        </form>
+    {% endif %}
+{% endblock %}

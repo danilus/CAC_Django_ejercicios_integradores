@@ -1,0 +1,31 @@
+<nav class="bg-body-tertiary">
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link {% if active_tab == 'home' %}active{% endif %}" href="{% url 'home' %}">Enunciados</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {% if active_tab == 'mcd' %}active{% endif %}" href="{% url 'mcd' %}">Ejercicio 1</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {% if active_tab == 'mcm' %}active{% endif %}" href="{% url 'mcm' %}">Ejercicio 2</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {% if active_tab == 'contar_palabras' %}active{% endif %}" href="{% url 'contar_palabras' %}">Ejercicio 3</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {% if active_tab == 'palabra_popular' %}active{% endif %}" href="{% url 'palabra_popular' %}">Ejercicio 4</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {% if active_tab == 'value_error' %}active{% endif %}" href="{% url 'value_error' %}">Ejercicio 5</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {% if active_tab == 'persona' %}active{% endif %}" href="{% url 'persona' %}">Ejercicio 6</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {% if active_tab == 'cuenta' %}active{% endif %}" href="{% url 'cuenta' %}">Ejercicio 7</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {% if active_tab == 'cuenta_joven' %}active{% endif %}" href="{% url 'cuenta_joven' %}">Ejercicio 8</a>
+        </li>
+    </ul>
+</nav>

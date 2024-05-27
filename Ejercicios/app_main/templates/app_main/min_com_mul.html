@@ -1,0 +1,39 @@
+{% extends 'app_main/layout.html' %}
+
+
+{% block main-nav %}
+    {% include 'app_main/main_nav.html' with active_tab='mcm' %}
+{% endblock %}
+
+{% block main-title %}Ejercicio 2: Mínimo Común Múltiplo{% endblock %}
+
+{% block content %}
+    {% if rta != None %}
+        <div class="my-4">
+            MÍNIMO COMÚN MÚLTIPLO ENTRE {{ num1 }} Y {{ num2 }}: <span class="fw-bold border px-1 rounded border-1 bg-warning-subtle border-black">{{ rta }}</span>
+        </div>
+        <div>
+            <a href="{% url 'mcm' %}">Ingresar Nuevos Valores</a>
+        </div>
+    {% else %}
+        <h5>Introduce dos valores para calcular su mínimo común múltiplo</h5>
+
+        <form action="{% url 'mcm'%}" method="get">
+            <div class="row py-2">
+                <div class="col-auto">
+                    <label for="num1">Valor 1</label>
+                    <input type="number" name="num1" class="form-control">
+                </div>
+                <div class="col-auto">
+                    <label for="num2">Valor 2</label>
+                    <input type="number" name="num2" class="form-control">
+                </div>
+            </div>
+            <div class="row py-2">
+                <div class="col-auto">
+                    <input type="submit" class="form-control btn btn-sm btn-success" value="Calcular">
+                </div>
+            </div>
+        </form>
+    {% endif %}
+{% endblock %}

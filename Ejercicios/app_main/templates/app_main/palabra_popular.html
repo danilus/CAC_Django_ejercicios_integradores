@@ -1,0 +1,39 @@
+{% extends 'app_main/layout.html' %}
+
+
+{% block main-nav %}
+    {% include 'app_main/main_nav.html' with active_tab='palabra_popular' %}
+{% endblock %}
+
+{% block main-title %}Ejercicio 4: Palabra Popular{% endblock %}
+
+{% block content %}
+    {% if popular_word_tuple|length != 0 %}
+        <div class="my-4">
+            PALABRA CON MÁS OCURRENCIAS
+            <div>{{ popular_word_tuple.0 }}: <span class="fw-bold border px-1 rounded border-1 bg-warning-subtle border-black">{{ popular_word_tuple.1 }}</span></div>
+        </div>
+        <div>
+            <a href="{% url 'palabra_popular' %}">Ingresar Texto Nuevo</a>
+        </div>
+
+    {% else %}
+        <h5>Introduce un texto para detectar la palabra más popular</h5>
+
+        <form action="{% url 'palabra_popular'%}" method="post">
+            {% csrf_token %}
+            
+            <div class="row py-2">
+                <div class="col">
+                    <label for="texto">Texto</label>
+                    <textarea name="texto" class="form-control" rows="5"></textarea>
+                </div>
+            </div>
+            <div class="row py-2">
+                <div class="col-auto">
+                    <input type="submit" class="form-control btn btn-sm btn-success" value="Procesar">
+                </div>
+            </div>
+        </form>
+    {% endif %}
+{% endblock %}
